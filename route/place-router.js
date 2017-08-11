@@ -42,7 +42,7 @@ placeRouter.post('/api/place', bearerAuth, jsonParser, (req, res, next) => {
   debug('POST: /api/place');
 
   if(!req.body.userID) next(createError(400, 'id required'));
-
+  console.log('place router ', req.user);
   req.body.userID = req.user._id;
   new Place(req.body).save()
   .then((place) => res.json(place))
