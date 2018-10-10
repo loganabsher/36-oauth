@@ -16,6 +16,26 @@ const userSchema = Schema({
   findHash: { type: String, unique: true }
 });
 
+userSchema.handleOAUTH = function(data){
+  if(!data || !data.email){
+    return Promise.reject(createError(400, 'VALIDATION ERROR - missing login information'));
+  }
+
+  return userSchema.findOne({email: data.email})
+  .then((user) => {
+    if(!user){
+      throw new Error('use not created');
+    }
+    return user;
+  })
+  .catch(() => {
+    return new User({
+      username: faker.internet.userName(),
+      email: data.email
+    }).save();
+  })
+}
+
 userSchema.methods.generatePasswordHash = function(password){
   debug('generatePasswordHash');
   return new Promise((resolve, reject) => {

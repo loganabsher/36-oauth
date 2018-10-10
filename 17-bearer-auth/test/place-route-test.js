@@ -74,9 +74,7 @@ describe('Place Routes', () => {
     describe('with valid input', () => {
       it('Should return a place', (done) => {
         superagent.get(`${url}/api/place/${this.tempPlace._id}`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .end((err, res) => {
           if(err) return done(err);
           expect(res.status).to.equal(200);
@@ -98,9 +96,7 @@ describe('Place Routes', () => {
     describe('with invalid id', () => {
       it('Should return a status of 404', (done) => {
         superagent.get(`${url}/api/place/invalidId`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .end((err) => {
           expect(err.status).to.equal(404);
           done();
@@ -139,9 +135,7 @@ describe('Place Routes', () => {
     describe('with valid input', () => {
       it('Should update an account', (done) => {
         superagent.put(`${url}/api/place/${this.tempPlace._id}`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .send({name: 'new place', desc: 'new desc'})
         .end((err, res) => {
           if(err) return done(err);
@@ -165,9 +159,7 @@ describe('Place Routes', () => {
     describe('with no body', () => {
       it('Should return a status of 400', (done) => {
         superagent.put(`${url}/api/place/${this.tempPlace._id}`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .end((err) => {
           expect(err.status).to.equal(400);
           done();
@@ -178,9 +170,7 @@ describe('Place Routes', () => {
     describe('with invalid id', () => {
       it('Should return a status of 404', (done) => {
         superagent.put(`${url}/api/place/invalidId`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .send({name: 'new place', desc: 'new desc'})
         .end((err) => {
           expect(err.status).to.equal(404);
@@ -207,13 +197,11 @@ describe('Place Routes', () => {
       })
       .catch(done);
     });
-    // TODO: things
+
     describe('with valid input', () => {
       it('Should return a token', (done) => {
         superagent.post(`${url}/api/place`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .send(examplePlace)
         .end((err, res) => {
           if(err) return done(err);
@@ -226,9 +214,7 @@ describe('Place Routes', () => {
     describe('with no body', () => {
       it('Should return a 400 error', (done) => {
         superagent.post(`${url}/api/place`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .end((err) => {
           expect(err.status).to.equal(400);
           done();
@@ -278,9 +264,7 @@ describe('Place Routes', () => {
     describe('with valid input', () => {
       it('Should remove a place', (done) => {
         superagent.delete(`${url}/api/place/${this.tempPlace._id}`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
+        .set({Authorization: `Bearer ${this.tempToken}`})
         .end((err, res) => {
           if(err) return done(err);
           expect(res.status).to.equal(200);
